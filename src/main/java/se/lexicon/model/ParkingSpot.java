@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import java.util.Objects;
+
 public class ParkingSpot {
 
     private int spotNumber;
@@ -46,5 +48,18 @@ public class ParkingSpot {
                 ", occupied=" + occupied +
                 ", areaCode=" + areaCode +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        ParkingSpot that = (ParkingSpot) object;
+        return spotNumber == that.spotNumber && occupied == that.occupied && areaCode == that.areaCode;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(spotNumber, occupied, areaCode);
     }
 }

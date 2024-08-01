@@ -2,6 +2,7 @@ package se.lexicon.model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Reservation {
@@ -97,5 +98,18 @@ public class Reservation {
                 ", associatedVehicle=" + associatedVehicle.getLicensePlate() +
                 ", parkingSpot=" + parkingSpot.getSpotNumber() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Reservation that = (Reservation) object;
+        return id == that.id && Objects.equals(associatedVehicle, that.associatedVehicle) && Objects.equals(parkingSpot, that.parkingSpot);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startTime, endTime, associatedVehicle, parkingSpot);
     }
 }

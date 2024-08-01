@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import java.util.Objects;
+
 public class Vehicle {
     private String licensePlate;
     private VehicleType type;
@@ -58,5 +60,19 @@ public class Vehicle {
                 "licensePlate='" + licensePlate + '\'' +
                 ", type=" + type.getName() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Vehicle vehicle = (Vehicle) object;
+        return Objects.equals(licensePlate, vehicle.licensePlate) && type == vehicle.type;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(licensePlate, type, customer);
     }
 }

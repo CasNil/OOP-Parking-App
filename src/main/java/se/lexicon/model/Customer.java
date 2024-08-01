@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import java.util.Objects;
+
 public class Customer {
 
     private int id;
@@ -70,5 +72,18 @@ public class Customer {
 
         return sb.toString();
 
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Customer customer = (Customer) object;
+        return id == customer.id && Objects.equals(name, customer.name) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(reservation, customer.reservation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, phoneNumber, reservation);
     }
 }
