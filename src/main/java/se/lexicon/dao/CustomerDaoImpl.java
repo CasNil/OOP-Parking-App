@@ -13,7 +13,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer create(Customer customer) {
-        // validate the param as needed.
+        for (Customer customerElement : storage) {
+            if (customerElement.getId() == customer.getId()) {
+                throw new IllegalArgumentException("Customer already exists!");
+            }
+        }
         customer.setId(CustomerIdSequencer.nextId()); // 1001
         storage.add(customer);
         return customer;
